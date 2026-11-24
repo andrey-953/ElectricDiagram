@@ -104,7 +104,7 @@ public class CircuitRenderer {
         float len = (float) Math.sqrt(dx * dx + dy * dy);
         if (len < 1f) return;
         float ux = dx / len, uy = dy / len;
-        float px = -uy, py = ux;
+        float px = -uy;
 
         float t0 = 0.25f, t1 = 0.75f, amp = 8f;
         int segs = 6;
@@ -116,7 +116,7 @@ public class CircuitRenderer {
             float t = t0 + (t1 - t0) * i / segs;
             float sign = (i % 2 == 0) ? 0f : 1f;
             float x = a.x + ux * len * t + px * amp * sign;
-            float y = a.y + uy * len * t + py * amp * sign;
+            float y = a.y + uy * len * t + ux * amp * sign;
             shapes.rectLine(prevX, prevY, x, y, 2f);
             prevX = x; prevY = y;
         }
