@@ -127,7 +127,7 @@ public class CircuitRenderer {
         float len = (float) Math.sqrt(dx * dx + dy * dy);
         if (len < 1f) return;
         float ux = dx / len, uy = dy / len;
-        float px = -uy, py = ux;
+        float px = -uy;
         float barLen = 12f;
 
         shapes.setColor(BG);
@@ -136,12 +136,12 @@ public class CircuitRenderer {
 
         float cx1 = a.x + ux * len * 0.44f, cy1 = a.y + uy * len * 0.44f;
         shapes.setColor(1f, 0.85f, 0.3f, 1f);
-        shapes.rectLine(cx1 - px * barLen, cy1 - py * barLen,
-                cx1 + px * barLen, cy1 + py * barLen, 3f);
+        shapes.rectLine(cx1 - px * barLen, cy1 - ux * barLen,
+                cx1 + px * barLen, cy1 + ux * barLen, 3f);
 
         float cx2 = a.x + ux * len * 0.56f, cy2 = a.y + uy * len * 0.56f;
-        shapes.rectLine(cx2 - px * barLen * 0.6f, cy2 - py * barLen * 0.6f,
-                cx2 + px * barLen * 0.6f, cy2 + py * barLen * 0.6f, 3f);
+        shapes.rectLine(cx2 - px * barLen * 0.6f, cy2 - ux * barLen * 0.6f,
+                cx2 + px * barLen * 0.6f, cy2 + ux * barLen * 0.6f, 3f);
     }
 
     private void drawCurrentSymbol(Vector2 a, Vector2 b) {
@@ -149,7 +149,7 @@ public class CircuitRenderer {
         float len = (float) Math.sqrt(dx * dx + dy * dy);
         if (len < 1f) return;
         float ux = dx / len, uy = dy / len;
-        float px = -uy, py = ux;
+        float px = -uy;
         float cx = (a.x + b.x) / 2f, cy = (a.y + b.y) / 2f;
 
         shapes.setColor(BG);
@@ -161,8 +161,8 @@ public class CircuitRenderer {
         shapes.rectLine(cx - ux * 8f, cy - uy * 8f, cx + ux * 8f, cy + uy * 8f, 2f);
         shapes.triangle(
                 cx + ux * 10f, cy + uy * 10f,
-                cx + ux * 5f + px * 5f, cy + uy * 5f + py * 5f,
-                cx + ux * 5f - px * 5f, cy + uy * 5f - py * 5f);
+                cx + ux * 5f + px * 5f, cy + uy * 5f + ux * 5f,
+                cx + ux * 5f - px * 5f, cy + uy * 5f - ux * 5f);
     }
 
     private void drawDiodeSymbol(Vector2 a, Vector2 b) {
@@ -170,7 +170,7 @@ public class CircuitRenderer {
         float len = (float) Math.sqrt(dx * dx + dy * dy);
         if (len < 1f) return;
         float ux = dx / len, uy = dy / len;
-        float px = -uy, py = ux;
+        float px = -uy;
         float cx = (a.x + b.x) / 2f, cy = (a.y + b.y) / 2f;
 
         shapes.setColor(BG);
@@ -181,11 +181,11 @@ public class CircuitRenderer {
         float apex = 8f, baseHalf = 8f;
         shapes.triangle(
                 cx + ux * apex, cy + uy * apex,
-                cx - ux * apex + px * baseHalf, cy - uy * apex + py * baseHalf,
-                cx - ux * apex - px * baseHalf, cy - uy * apex - py * baseHalf);
+                cx - ux * apex + px * baseHalf, cy - uy * apex + ux * baseHalf,
+                cx - ux * apex - px * baseHalf, cy - uy * apex - ux * baseHalf);
         float bx = cx + ux * apex, by = cy + uy * apex;
-        shapes.rectLine(bx + px * baseHalf, by + py * baseHalf,
-                bx - px * baseHalf, by - py * baseHalf, 3f);
+        shapes.rectLine(bx + px * baseHalf, by + ux * baseHalf,
+                bx - px * baseHalf, by - ux * baseHalf, 3f);
     }
 
     // ------------------------------------------------------------------
